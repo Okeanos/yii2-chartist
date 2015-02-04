@@ -19,6 +19,6 @@
   },
   "require": {
     "yiisoft/yii2": "*",
-    "bower-asset/chartist": ">=0.7.*"
+    "bower-asset/chartist": "*"
   }
 }
