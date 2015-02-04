@@ -9,12 +9,12 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-$ php composer.phar require --prefer-dist Okeanos/yii2-chartist "*"
+$ php composer.phar require --prefer-dist okeanos/yii2-chartist "*"
 ```
 
  or
 ```
- "Okeanos/yii2-chartist": "*"
+ "okeanos/yii2-chartist": "*"
 ```
 
 to the ```require``` section of your `composer.json` file.
@@ -22,7 +22,7 @@ to the ```require``` section of your `composer.json` file.
 ## Usage
 
 ```php
-use Okeanos\chartist\Chartist;
+use okeanos\chartist\Chartist;
 
 echo Chartist::widget([
 	'tagName' => 'div', // HTML-container for the chart, optional parameter

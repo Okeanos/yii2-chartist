@@ -1,13 +1,13 @@
 <?php
 /**
- * @package Okeanos\chartist
+ * @package okeanos\chartist
  * @author Nikolas Grottendieck <github@nikolasgrottendieck.com>
  * @copyright Copyright &copy; Nikolas Grottendieck
  * @license BSD-3-Clause
  * @version 1.0
  */
 
-namespace Okeanos\chartist;
+namespace okeanos\chartist;
 
 use Yii;
 use yii\base\Model;

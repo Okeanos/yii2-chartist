@@ -1,5 +1,5 @@
 {
-  "name": "Okeanos/yii2-chartist",
+  "name": "okeanos/yii2-chartist",
   "type": "yii2-extension",
   "description": "Chartist.js extension for Yii2 Framework.",
   "keywords": ["yii2", "chartist", "extension", "plot", "responsive charts", "charts", "charting"],
@@ -14,7 +14,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "Okeanos\\chartist\\": ""
+      "okeanos\\chartist\\": ""
     }
   },
   "require": {
