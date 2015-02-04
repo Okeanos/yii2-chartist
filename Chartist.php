@@ -9,7 +9,7 @@
 
 namespace okeanos\chartist;
 
-use Yii;
+use yii;
 use yii\base\Model;
 use yii\base\Widget;
 use yii\helpers\Html;
@@ -84,7 +84,7 @@ class Chartist extends Widget
         $responsiveOptions = '';
 
         if (isset($this->chartOptions['responsiveOptions']) && !empty($this->chartOptions['responsiveOptions'])) {
-            $responsiveOptions = ', ' . $this->chartOptions['responsiveOptions'];
+            $responsiveOptions = ', ' . Json::encode($this->chartOptions['responsiveOptions']);
         }
 
         $identifier = isset($this->widgetOptions['useClass']) && is_string($this->widgetOptions['useClass']) ? '.' . $this->widgetOptions['useClass'] : '#' . $this->htmlOptions['id'];
