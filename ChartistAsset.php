@@ -21,12 +21,14 @@ use yii\web\AssetBundle;
 class ChartistAsset extends AssetBundle
 {
 
+    public $sourcePath = '@bower/chartist/dist/';
+
     public $css = [
-        '@bower/dist/chartist.min.css'
+        'chartist.min.css'
     ];
 
     public $js = [
-        '@bower/dist/chartist.min.js'
+        'chartist.min.js'
     ];
 
     /**
@@ -36,7 +38,7 @@ class ChartistAsset extends AssetBundle
     {
         parent::init();
         if (YII_ENV_DEV || YII_DEBUG) {
-            $this->js = ['@bower/dist/chartist.js'];
+            $this->js = ['chartist.js'];
         }
     }
 
