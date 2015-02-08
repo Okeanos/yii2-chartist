@@ -57,11 +57,11 @@ echo Chartist::widget([
 		]
 	],
 	'widgetOptions' => [
-		'type' => 'Bar', // Bar, Line, or Pie, i.e. the chart types suppored by Chartist.js
-		'useClass' => 'ct-chart' // optional parameter, needs to be included in the htmlOptions class string as well if set!
+		'type' => 'Bar', // Bar, Line, or Pie, i.e. the chart types supported by Chartist.js
+		'useClass' => 'chartist-chart' // optional parameter, needs to be included in the htmlOptions class string as well if set!
 	],
 	'htmlOptions' => [
-		'class' => 'ct-chart ct-golden-section', // size of the charting area needs to be assigned
+		'class' => 'chartist-chart ct-chart ct-golden-section', // ct-chart for CSS references; size of the charting area needs to be assigned as well
 		// ...
 	]
 ]);
