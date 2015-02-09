@@ -47,7 +47,7 @@ class Chartist extends Widget
     public $tagName = 'div';
 
     /**
-     * @var array The widget options: type of chart ; whether to force an identifier different than the HTML-id, e.g. in case you want to use a class instead; ['type','useClass']
+     * @var array The widget options: type of chart ; whether to force an identifier different than the HTML-id, e.g. in case you want to use a class instead; ['type' => '','useClass' => '']
      */
     public $widgetOptions = [];
 
