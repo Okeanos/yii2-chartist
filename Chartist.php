@@ -80,7 +80,7 @@ class Chartist extends Widget
         ChartistAsset::register($this->view);
 
         $data = Json::encode($this->data);
-        $options = isset($this->chartOptions['options']) && empty($this->chartOptions['options']) ? Json::encode($this->chartOptions['options']) : [];
+        $options = isset($this->chartOptions['options']) && !empty($this->chartOptions['options']) ? $this->chartOptions['options'] : [];
         $responsiveOptions = '';
 
         if (isset($this->chartOptions['responsiveOptions']) && !empty($this->chartOptions['responsiveOptions'])) {
@@ -89,7 +89,7 @@ class Chartist extends Widget
 
         $identifier = isset($this->widgetOptions['useClass']) && is_string($this->widgetOptions['useClass']) ? '.' . $this->widgetOptions['useClass'] : '#' . $this->htmlOptions['id'];
 
-        $this->view->registerJs('var '.$this->htmlOptions['id'].' = new Chartist.' . $this->widgetOptions['type'] . '("' . $identifier . '", ' . $data . ', ' . $options . $responsiveOptions . ');',
+        $this->view->registerJs('var '.$this->htmlOptions['id'].' = new Chartist.' . $this->widgetOptions['type'] . '("' . $identifier . '", ' . $data . ', ' . Json::encode($options) . $responsiveOptions . ');',
             View::POS_READY);
     }
 }
