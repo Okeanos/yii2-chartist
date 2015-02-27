@@ -79,16 +79,14 @@ class Chartist extends Widget
     {
         ChartistAsset::register($this->view);
 
-        $options = isset($this->chartOptions['options']) && !empty($this->chartOptions['options']) ? $this->chartOptions['options'] : [];
-        $responsiveOptions = '';
+        $identifier = '"' . (isset($this->widgetOptions['useClass']) && is_string($this->widgetOptions['useClass']) ? '.' . $this->widgetOptions['useClass'] : '#' . $this->htmlOptions['id']) . '"';
+        $options = isset($this->chartOptions['options']) && !empty($this->chartOptions['options']) ? Json::encode($this->chartOptions['options']) : Json::encode([]);
+        $responsiveOptions = isset($this->chartOptions['responsiveOptions']) && !empty($this->chartOptions['responsiveOptions']) ? Json::encode($this->chartOptions['responsiveOptions']) : Json::encode([]);
 
-        if (isset($this->chartOptions['responsiveOptions']) && !empty($this->chartOptions['responsiveOptions'])) {
-            $responsiveOptions = ', ' . Json::encode($this->chartOptions['responsiveOptions']);
-        }
+        $chartistOptions = [$identifier, $this->data, $options, $responsiveOptions];
 
-        $identifier = isset($this->widgetOptions['useClass']) && is_string($this->widgetOptions['useClass']) ? '.' . $this->widgetOptions['useClass'] : '#' . $this->htmlOptions['id'];
-
-        $this->view->registerJs('var '.$this->htmlOptions['id'].' = new Chartist.' . $this->widgetOptions['type'] . '("' . $identifier . '", ' . $this->data . ', ' . Json::encode($options) . $responsiveOptions . ');',
+        $this->view->registerJs('var ' . $this->htmlOptions['id'] . ' = new Chartist.' . $this->widgetOptions['type'] . '(' . implode(', ',
+                $chartistOptions) . ');',
             View::POS_READY);
     }
 }
