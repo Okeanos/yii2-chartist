@@ -80,13 +80,33 @@ class Chartist extends Widget
         ChartistAsset::register($this->view);
 
         $identifier = '"' . (isset($this->widgetOptions['useClass']) && is_string($this->widgetOptions['useClass']) ? '.' . $this->widgetOptions['useClass'] : '#' . $this->htmlOptions['id']) . '"';
-        $options = isset($this->chartOptions['options']) && !empty($this->chartOptions['options']) ? Json::encode($this->chartOptions['options']) : Json::encode([]);
-        $responsiveOptions = isset($this->chartOptions['responsiveOptions']) && !empty($this->chartOptions['responsiveOptions']) ? Json::encode($this->chartOptions['responsiveOptions']) : Json::encode([]);
-
-        $chartistOptions = [$identifier, $this->data, $options, $responsiveOptions];
+        $options = Json::encode([]);
+        if (isset($this->chartOptions['options']) && !empty($this->chartOptions['options'])) {
+            // Check whether a reference to a JS variable has been passed instead of actual options as array
+            switch (is_string($this->chartOptions['options'])) {
+                case true:
+                    $options = $this->chartOptions['options'];
+                    break;
+                case false:
+                    $options = Json::encode($this->chartOptions['options']);
+                    break;
+            }
+        }
+        $responsiveOptions = Json::encode([]);
+        if (isset($this->chartOptions['responsiveOptions']) && !empty($this->chartOptions['responsiveOptions'])) {
+            // Check whether a reference to a JS variable has been passed instead of actual options as array
+            switch (is_string($this->chartOptions['options'])) {
+                case true:
+                    $responsiveOptions = $this->chartOptions['responsiveOptions'];
+                    break;
+                case false:
+                    $responsiveOptions = Json::encode($this->chartOptions['responsiveOptions']);
+                    break;
+            }
+        }
 
         $this->view->registerJs('var ' . $this->htmlOptions['id'] . ' = new Chartist.' . $this->widgetOptions['type'] . '(' . implode(', ',
-                $chartistOptions) . ');',
+                [$identifier, $this->data, $options, $responsiveOptions]) . ');',
             View::POS_READY);
     }
 }
