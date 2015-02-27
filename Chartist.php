@@ -32,9 +32,9 @@ class Chartist extends Widget
     public $chartOptions = [];
 
     /**
-     * @var array Data to be rendered as a chart, should be an array that can be JSON encoded resulting in data Chartist can work with, check their documentation
+     * @var array Data to be rendered as a chart, the data has to be JSON encoded according to the Chartist documentation before it is passed into the widget
      */
-    public $data = [];
+    public $data = '';
 
     /**
      * @var array HTML attributes or other settings for widget container
@@ -79,7 +79,6 @@ class Chartist extends Widget
     {
         ChartistAsset::register($this->view);
 
-        $data = Json::encode($this->data);
         $options = isset($this->chartOptions['options']) && !empty($this->chartOptions['options']) ? $this->chartOptions['options'] : [];
         $responsiveOptions = '';
 
@@ -89,7 +88,7 @@ class Chartist extends Widget
 
         $identifier = isset($this->widgetOptions['useClass']) && is_string($this->widgetOptions['useClass']) ? '.' . $this->widgetOptions['useClass'] : '#' . $this->htmlOptions['id'];
 
-        $this->view->registerJs('var '.$this->htmlOptions['id'].' = new Chartist.' . $this->widgetOptions['type'] . '("' . $identifier . '", ' . $data . ', ' . Json::encode($options) . $responsiveOptions . ');',
+        $this->view->registerJs('var '.$this->htmlOptions['id'].' = new Chartist.' . $this->widgetOptions['type'] . '("' . $identifier . '", ' . $this->data . ', ' . Json::encode($options) . $responsiveOptions . ');',
             View::POS_READY);
     }
 }
