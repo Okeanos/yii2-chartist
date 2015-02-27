@@ -79,7 +79,9 @@ class Chartist extends Widget
     {
         ChartistAsset::register($this->view);
 
+        // Select the identifier for this chart
         $identifier = '"' . (isset($this->widgetOptions['useClass']) && is_string($this->widgetOptions['useClass']) ? '.' . $this->widgetOptions['useClass'] : '#' . $this->htmlOptions['id']) . '"';
+        // Set empty options and afterwards override if actual settings have been passed as arguments
         $options = Json::encode([]);
         if (isset($this->chartOptions['options']) && !empty($this->chartOptions['options'])) {
             // Check whether a reference to a JS variable has been passed instead of actual options as array
@@ -92,10 +94,11 @@ class Chartist extends Widget
                     break;
             }
         }
+        // Set empty options and afterwards override if actual settings have been passed as arguments
         $responsiveOptions = Json::encode([]);
         if (isset($this->chartOptions['responsiveOptions']) && !empty($this->chartOptions['responsiveOptions'])) {
             // Check whether a reference to a JS variable has been passed instead of actual options as array
-            switch (is_string($this->chartOptions['options'])) {
+            switch (is_string($this->chartOptions['responsiveOptions'])) {
                 case true:
                     $responsiveOptions = $this->chartOptions['responsiveOptions'];
                     break;
