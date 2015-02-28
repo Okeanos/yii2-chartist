@@ -60,6 +60,10 @@ class Chartist extends Widget
         if (!isset($this->htmlOptions['id'])) {
             $this->htmlOptions['id'] = $this->getId();
         }
+        // checks if ct-chart is part of the classes
+        if(!isset($this->htmlOptions['class']) || false === strpos($this->htmlOptions['class'], 'ct-chart')) {
+            $this->htmlOptions['class'] .= 'ct-chart';
+        }
         parent::init();
     }
 
